@@ -2,7 +2,7 @@ use tokio::{net::TcpListener, io::{ AsyncWriteExt,BufReader, AsyncBufReadExt}, s
 
 #[tokio::main]
 async fn main() {
-    let listener: TcpListener = TcpListener::bind("127.0.0.1:8000").await.unwrap();
+    let listener: TcpListener = TcpListener::bind("127.0.0.1:6969").await.unwrap();
     let (tx, rx) = broadcast::channel(10);
 
     loop {
@@ -22,7 +22,7 @@ async fn main() {
                             if result.unwrap() == 0 {
                                 break;
                             }
-                            tx.send((line.clone(),addr)).unwrap();
+                            tx.send((line.clone(),addr)).unwrap();  
                             line.clear();
                         }
                         result= rx.recv() => {
@@ -36,4 +36,4 @@ async fn main() {
                 }  
         });
     }
-}   
+}           
